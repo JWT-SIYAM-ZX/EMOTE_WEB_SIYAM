@@ -1,5 +1,5 @@
 {
-  "name": "siyam-emote-panel",
+  "name": "siyam-panel",
   "version": "1.0.0",
   "scripts": {
     "start": "node server.js"
