@@ -1,33 +1,20 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8"/>
-  <title>SIYAM EMOTE PANEL</title>
-  <link rel="stylesheet" href="style.css"/>
-</head>
-<body class="particles">
-<div class="wrap">
-  <div class="panel glass">
-    <div id="login">
-      <h2>SIYAM EMOTE PANEL</h2>
-      <input id="pass" placeholder="Enter Password"/>
-      <button class="btn" onclick="login()">ENTER PANEL</button>
-    </div>
-    <div id="panel" style="display:none">
-      <h1>SIYAM EMOTE PANEL</h1>
-      <input id="tc" placeholder="Team Code"/>
-      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px">
-        <input id="u1" placeholder="UID 1"><input id="u2" placeholder="UID 2">
-        <input id="u3" placeholder="UID 3"><input id="u4" placeholder="UID 4">
-        <input id="u5" placeholder="UID 5"><input id="u6" placeholder="UID 6">
-      </div>
-      <h3>Select Emote</h3>
-      <div class="grid" id="emotes"></div>
-    </div>
-  </div>
-</div>
-<div id="toast" class="toast" style="display:none"></div>
-<script src="app.js"></script>
+<body style="background:black;color:white;text-align:center">
+<h2>SIYAM EMOTE PANEL</h2>
+<input id="password" placeholder="Enter Password"/>
+<button onclick="login()">ENTER PANEL</button>
+<script>
+if(!localStorage.getItem("loginPass")){
+ localStorage.setItem("loginPass","SIYAMXEMOTE");
+}
+function login(){
+ const p=document.getElementById("password").value;
+ if(p===localStorage.getItem("loginPass")){
+   location.href="/panel.html";
+ }else alert("Wrong Password");
+}
+</script>
 </body>
 </html>

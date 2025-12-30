@@ -1,38 +1,7 @@
 
 <!DOCTYPE html>
 <html>
-<head><meta charset="utf-8"/><title>Admin</title><link rel="stylesheet" href="style.css"/></head>
-<body class="particles">
-<div class="wrap">
-  <div class="panel glass">
-    <h2>Admin Panel</h2>
-    <input id="ap" placeholder="Admin Password"/>
-    <button class="btn" onclick="login()">Login</button>
-    <div id="a" style="display:none">
-      <h3>Change Login Password</h3>
-      <input id="np" placeholder="New Login Password"/>
-      <button class="btn" onclick="cp()">Update</button>
-      <h3>Add New Emote</h3>
-      <input id="n" placeholder="Emote Name"/>
-      <input id="i" placeholder="Emote ID"/>
-      <button class="btn" onclick="add()">Add Emote</button>
-      <div id="preview"></div>
-    </div>
-  </div>
-</div>
-<script>
-function login(){
-  fetch("/api/admin/login",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({password:ap.value})})
-  .then(r=>r.json()).then(d=>{ if(d.success) a.style.display="block"; });
-}
-function cp(){
-  fetch("/api/admin/change-password",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({newPassword:np.value})});
-}
-function add(){
-  const img = `https://cdn.jsdelivr.net/gh/ShahGCreator/icon@main/PNG/${i.value}.png`;
-  preview.innerHTML = `<img width=120 src="${img}">`;
-  fetch("/api/admin/add-emote",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:n.value,id:i.value})});
-}
-</script>
+<body style="background:black;color:white">
+<h2>Admin Panel</h2>
 </body>
 </html>
