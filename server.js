@@ -1,44 +1,27 @@
-
 const express = require("express");
-const fs = require("fs");
-const cors = require("cors");
+const path = require("path");
 
 const app = express();
-app.use(cors());
-app.use(express.json());
-app.use(express.static("public"));
+const PORT = process.env.PORT || 3000;
 
-const DATA_FILE = "./data.json";
-const readData = () => JSON.parse(fs.readFileSync(DATA_FILE));
-const writeData = (d) => fs.writeFileSync(DATA_FILE, JSON.stringify(d,null,2));
+// 🔥 PUBLIC FOLDER SERVE
+app.use(express.static(path.join(__dirname, "public")));
 
-app.post("/api/login",(req,res)=>{
-  const d=readData();
-  res.json({success:req.body.password===d.loginPassword});
+// ROOT → LOGIN PAGE
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-app.post("/api/admin/login",(req,res)=>{
-  const d=readData();
-  res.json({success:req.body.password===d.adminPassword});
+// PANEL PAGE
+app.get("/panel.html", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "panel.html"));
 });
 
-app.post("/api/admin/change-password",(req,res)=>{
-  const d=readData();
-  d.loginPassword=req.body.newPassword;
-  writeData(d);
-  res.json({success:true});
+// ADMIN PAGE
+app.get("/admin.html", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "admin.html"));
 });
 
-app.get("/api/emotes",(req,res)=>{
-  res.json(readData().emotes);
+app.listen(PORT, () => {
+  console.log("Server running on port " + PORT);
 });
-
-app.post("/api/admin/add-emote",(req,res)=>{
-  const d=readData();
-  d.emotes.push(req.body);
-  writeData(d);
-  res.json({success:true});
-});
-
-const PORT=process.env.PORT||3000;
-app.listen(PORT,()=>console.log("Running on",PORT));
