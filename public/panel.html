@@ -1,8 +1,14 @@
 
-<!DOCTYPE html>
-<html>
-<body style="background:#111;color:white">
-<h1>Main Emote Panel</h1>
-<p>Panel Loaded Successfully</p>
-</body>
-</html>
+<!DOCTYPE html><html><body style="background:#100020;color:white">
+<h1>SIYAM EMOTE PANEL</h1>
+<input id="tc" placeholder="Team Code"><br><br>
+<input id="u1" placeholder="UID1"><input id="u2" placeholder="UID2">
+<div id="g"></div>
+<script>
+[1,2,3,4,5].forEach(e=>{
+ let i=document.createElement("img");
+ i.src=`https://cdn.jsdelivr.net/gh/ShahGCreator/icon@main/PNG/${e}.png`;
+ i.width=60;i.onclick=()=>fetch(`https://emote-bot-1-cyug.onrender.com/join?tc=${tc.value}&uid1=${u1.value}&uid2=${u2.value}&emote_id=${e}`);
+ g.appendChild(i);
+});
+</script></body></html>

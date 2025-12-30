@@ -1,20 +1,8 @@
 
-<!DOCTYPE html>
-<html>
-<body style="background:black;color:white;text-align:center">
+<!DOCTYPE html><html><body style="background:black;color:white;text-align:center">
 <h2>SIYAM EMOTE PANEL</h2>
-<input id="password" placeholder="Enter Password"/>
-<button onclick="login()">ENTER PANEL</button>
+<input id="p"><button onclick="l()">ENTER PANEL</button>
 <script>
-if(!localStorage.getItem("loginPass")){
- localStorage.setItem("loginPass","SIYAMXEMOTE");
-}
-function login(){
- const p=document.getElementById("password").value;
- if(p===localStorage.getItem("loginPass")){
-   location.href="/panel.html";
- }else alert("Wrong Password");
-}
-</script>
-</body>
-</html>
+if(!localStorage.getItem("loginPass"))localStorage.setItem("loginPass","SIYAMXEMOTE");
+function l(){p.value===localStorage.getItem("loginPass")?location.href="/panel.html":alert("Wrong");}
+</script></body></html>
