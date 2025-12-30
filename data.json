@@ -1,0 +1,30 @@
+{
+  "loginPassword": "SIYAMXEMOTE",
+  "adminPassword": "SIYAMEMOTECODEX",
+  "emotes": [
+    {
+      "name": "LOL",
+      "id": "909000002"
+    },
+    {
+      "name": "Puffy Ride",
+      "id": "909051014"
+    },
+    {
+      "name": "Circle",
+      "id": "909050009"
+    },
+    {
+      "name": "Petals",
+      "id": "909051013"
+    },
+    {
+      "name": "Bow",
+      "id": "909051012"
+    },
+    {
+      "name": "Motorbike",
+      "id": "909051010"
+    }
+  ]
+}
