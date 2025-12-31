@@ -1,0 +1,243 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 240 10% 4%;
+    --foreground: 270 100% 98%;
+
+    --card: 240 10% 8%;
+    --card-foreground: 270 100% 98%;
+
+    --popover: 240 10% 6%;
+    --popover-foreground: 270 100% 98%;
+
+    --primary: 280 100% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 300 100% 50%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 240 10% 15%;
+    --muted-foreground: 270 20% 60%;
+
+    --accent: 280 100% 70%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 280 50% 25%;
+    --input: 280 50% 20%;
+    --ring: 280 100% 60%;
+
+    --radius: 0.75rem;
+
+    --neon-purple: 280 100% 60%;
+    --neon-magenta: 300 100% 50%;
+    --neon-cyan: 180 100% 50%;
+    --glow-purple: 280 100% 70%;
+    --dark-bg: 240 20% 4%;
+    --dark-surface: 240 15% 8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-rajdhani;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-orbitron;
+  }
+}
+
+@layer utilities {
+  .font-orbitron {
+    font-family: 'Orbitron', sans-serif;
+  }
+
+  .font-rajdhani {
+    font-family: 'Rajdhani', sans-serif;
+  }
+
+  .glow-text {
+    text-shadow: 0 0 10px hsl(var(--primary)),
+                 0 0 20px hsl(var(--primary)),
+                 0 0 40px hsl(var(--primary));
+  }
+
+  .glow-border {
+    box-shadow: 0 0 5px hsl(var(--primary)),
+                0 0 10px hsl(var(--primary) / 0.5),
+                inset 0 0 5px hsl(var(--primary) / 0.2);
+  }
+
+  .glow-border-intense {
+    box-shadow: 0 0 10px hsl(var(--primary)),
+                0 0 20px hsl(var(--primary) / 0.6),
+                0 0 40px hsl(var(--primary) / 0.3),
+                inset 0 0 10px hsl(var(--primary) / 0.3);
+  }
+
+  .glass {
+    background: hsl(var(--card) / 0.6);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--border) / 0.5);
+  }
+
+  .glass-intense {
+    background: hsl(var(--card) / 0.8);
+    backdrop-filter: blur(30px);
+    border: 1px solid hsl(var(--primary) / 0.3);
+  }
+
+  .gradient-shine {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--primary)) 0%,
+      hsl(var(--secondary)) 50%,
+      hsl(var(--primary)) 100%
+    );
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
+  }
+
+  .btn-neon {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%);
+    transition: all 0.3s ease;
+  }
+
+  .btn-neon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, hsl(0 0% 100% / 0.3), transparent);
+    animation: shine 2s infinite;
+  }
+
+  .btn-neon:hover {
+    box-shadow: 0 0 20px hsl(var(--primary)),
+                0 0 40px hsl(var(--primary) / 0.5);
+    transform: translateY(-2px);
+  }
+
+  .card-glow {
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .card-glow::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)), hsl(var(--primary)));
+    background-size: 200% 200%;
+    animation: gradient-shift 4s ease infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
+
+  .card-glow:hover::before {
+    opacity: 1;
+  }
+
+  .card-glow:hover {
+    transform: translateY(-4px) scale(1.02);
+  }
+
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .float {
+    animation: float 3s ease-in-out infinite;
+  }
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes shine {
+  0% { left: -100%; }
+  50%, 100% { left: 100%; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px hsl(var(--primary)),
+                0 0 10px hsl(var(--primary) / 0.5);
+  }
+  50% {
+    box-shadow: 0 0 15px hsl(var(--primary)),
+                0 0 30px hsl(var(--primary) / 0.6),
+                0 0 50px hsl(var(--primary) / 0.3);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes particle-float {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: hsl(var(--primary));
+  border-radius: 50%;
+  box-shadow: 0 0 10px hsl(var(--primary)),
+              0 0 20px hsl(var(--primary) / 0.5);
+  animation: particle-float linear infinite;
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
